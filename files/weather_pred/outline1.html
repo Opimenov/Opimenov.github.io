@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+     "http://www.w3.org/TR/html4/transitional.dtd">
+<html>
+<head>
+  <meta HTTP-EQUIV=CONTENT-TYPE CONTENT="text/html; charset=utf-8">
+  <title>Slide 1</title>
+</head>
+<body>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(0)">Slide 1</a></p><p>Alexander Burke </p>
+<p>Divya Bajaj</p>
+<p>Yu-Ju Chien&nbsp;</p>
+<p>Oleksandr Pimenov</p>
+<p><a href="https://github.com/Opimenov/weather-prediction"><i><u>source code link</i></u></a></p>
+<p><b>Long-lead Forecasting of </b></p>
+<p><b>Extreme Precipitation: </b></p>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(1)">Data Pre-Processing</a></p><ul>
+<li>Constructed data samples in proper format which can be used by different machine learning algorithms.</li>
+<li>For each day where one sample has 10 days of data, we created an empty data frame to be used as a main container. </li>
+<li>Then, for each year 1980 - 2011, read one file from raw data and dropped first 4 columns. This frame was then added to the bottom of the main container. </li>
+<li>Also, since we are shifting consequent days UP we need to delete day number of top rows and 9 - day number of bottom rows (as there are 0-9 days).</li>
+</ul>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(2)">Data Pre-Processing</a></p><ul>
+<li>For improved performance it is better to take only needed rows since we are putting these frames side by side and shifting each one row up (like a staircase). At last</li>
+<li>At last, we wrote one meteo variable for one day in a separate file. </li>
+<li>90 files of features were produced. Each file represents a column and one file for labels. </li>
+<li>These experimental samples (features and labels) were further used for feature selection.</li>
+</ul>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(3)">Scalable and Accurate OnLine Approach (SAOLA)</a></p><ul>
+<li><b>Problem: </b>The number of features for the data is way too large to reasonably or meaningfully train a classifier. What approach should we use to cut down on the number of features?</li>
+<li>For this project we were asked to use SAOLA: Scalable and Accurate OnLine Approach for feature selection.</li>
+<li>Results: 14-18 features on our own preprocessed data set (depending on correlation formula used)</li>
+<li>2-4 features on given data set (depending on SAOLA implementation 1 or 2)</li>
+</ul>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(4)">Highlighting the relevant features          on a map</a></p><ul>
+<li>Using SOALA Algorithm, we were able to produce the relevant features, their corresponding location and day.</li>
+<li>The location id was used to find longitude and latitude which depicts where that location is exactly on the world map. This was to plot the specific feature of that location on a specific day.</li>
+<li>We used simple library gmplot. Gmplot&nbsp;generates an html&nbsp;with a&nbsp;google&nbsp;map and markers in specified locations. </li>
+</ul>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(5)">Correlation Functions</a></p><ul>
+<li>Thinking about the Pearson correlation function, we found out that pandas.corr function has two more correlation functions as an optional arguments to corr function. </li>
+<li>We have decided to use all three correlation functions and compare the results. </li>
+<li>The results are as follows: Pearson -&gt; 15 features, Kendall -&gt; 18 features, Spearman&nbsp;-&gt; 19 features.</li>
+</ul>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(6)">Kendall correlation function</a></p></div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(7)">Pearson correlation function</a></p></div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(8)">Spearman correlation function</a></p></div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(9)">
+Unbalanced Data: Undersampling &amp; Oversampling
+</a></p></div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(10)"><b>
+</b>Undersampling &amp; Oversampling<b>
+</b></a></p><ul>
+<li>Definitions from cited source:</li>
+<li>Oversampling : With oversampling, data from the minority class (in our case, class label “1”) is artificially reproduced so it has greater representation in the dataset</li>
+<li>Undersampling : With undersampling, data labeled with the majority class is removed to obtain a balanced dataset</li>
+<li>Oversampling is best for smaller datasets while undersampling is better for larger datasets. (Brownlee)</li>
+</ul>
+<p>Source: <a href="https://machinelearningmastery.com/tactics-to-combat-imbalanced-classes-in-your-machine-learning-dataset/"><u>https://machinelearningmastery.com/tactics-to-combat-imbalanced-classes-in-your-machine-learning-dataset/</u></a></p>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(11)"><b>
+</b>Undersampling &amp; Oversampling<b>
+</b></a></p><ul>
+<li>We used imbalanced learn, a library of&nbsp;undersampling&nbsp;and oversampling algorithms to deal with this imbalanced data</li>
+<li>https://github.com/scikit-learn-contrib/imbalanced-learn</li>
+</ul>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(12)"><b>
+</b>Undersampling &amp; Oversampling<b>
+</b></a></p><ul>
+<li>Our dataset was right on the borderline between what was recommended as being “large” and “small,” (~10,000 samples) but we had better results with oversampling and combinations of oversampling and undersampling than with any of the undersampling algorithms alone.</li>
+<li>We only resampled the training data with its target after doing the suggested split by years. Our trained classifiers then made predictions on the unmodified set of test features. This was based off of the recommendation of the cited source, Brownlee.</li>
+</ul>
+<p>Source: <a href="https://machinelearningmastery.com/tactics-to-combat-imbalanced-classes-in-your-machine-learning-dataset/"><u>https://machinelearningmastery.com/tactics-to-combat-imbalanced-classes-in-your-machine-learning-dataset/</u></a></p>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(13)">Classification Model</a></p><ul>
+<li>KNN</li>
+<li>Naïve Bayes&nbsp;</li>
+<li>SVM</li>
+<li>Random Forests</li>
+<li>Multilayer Perceptron</li>
+</ul>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(14)">Confusion Matrix</a></p><p>KNN</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Predicted</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1</p>
+<p>Actual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1684&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b>&nbsp;</b>0</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;119&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<b>&nbsp;</b>0</p>
+<p>Naïve Bayes</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Predicted</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1</p>
+<p>Actual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1056&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;628</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 9&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;110</p>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(15)">Alexander Burke – SVM Classifier
+SVM – Random Over Sampler</a></p><p><b>54% accuracy on test data</b></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Predicted</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1</p>
+<p>Actual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1204&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b> </b>955</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<b> </b>95</p>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(16)">SVM – SMOTE</a></p><p><b>57% accuracy on test data</b></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Predicted</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1</p>
+<p>Actual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1194&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b> </b>955</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<b> </b>95</p>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(17)">SVM – ADASYN</a></p><p><b>57% accuracy on test data</b></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Predicted</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1</p>
+<p>Actual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1183&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b> </b>966</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<b> </b>95</p>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(18)">ROC curve for Random forest using
+SMOTE + ENN</a></p><p>​</p>
+<p><b>78% accuracy on test data</b>​</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Predicted​</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1​</p>
+<p>Actual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1354&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;330</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 66&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<b>&nbsp;</b>53​</p>
+<p>​</p>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(19)">Alex Pimenov
+MLP intro</a></p><ul>
+<li>MLP (<b>multilayer perceptron)</b> is a class of feedforward (does not have cycles) artificial neural network.</li>
+<li>It has multiple layers and non-linear activation.&nbsp;</li>
+<li>It can distinguish data that is not linearly separable.</li>
+</ul>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(20)">ANN parameters</a></p><ul>
+<li>Tried activation functions:</li>
+<p>sigmoid function, hyperbolic tangent,</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>rectified linear unit function</u></p>
+<p><u>f(x) = max(0, x)</u></p>
+<li>Tried hidden layer sizes configurations:</li>
+<p>(1,)&nbsp;&nbsp;&nbsp; (4,2)&nbsp;&nbsp;&nbsp; (4,8,4)&nbsp;&nbsp;&nbsp; (16,256,16,4) &nbsp; &nbsp; (16,256,256,16,4)</p>
+<li>Other configurations:&nbsp;
+learning rate, max iterations, tol</li>
+</ul>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(21)">Accuracy is great</a></p><p>&nbsp;(16, 256, 16, 4)</p>
+<p><b>95% accuracy on test data</b></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Predicted</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1</p>
+<p>Actual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2142&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> </b>0</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 118&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> 0</b></p>
+<p>&nbsp;(4, 2)</p>
+<p><b>75% accuracy on test data</b></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Predicted</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1</p>
+<p>Actual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1602 &nbsp;&nbsp;&nbsp;&nbsp;540</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 36 &nbsp;&nbsp;&nbsp;&nbsp;82</p>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(22)">ROC curves much better</a></p><p>95% accuracy</p>
+<p>75% accuracy</p>
+</div>
+<div align="left"><p><a href="JavaScript:parent.NavigateAbs(23)">ROC Curves Summary</a></p><table>
+  <tr>
+    <td>
+<p>KNN - Imbalanced</p>
+    </td>
+    <td>
+<p>KNN - Balanced</p>
+    </td>
+    <td>
+<p>Naïve Bayes - Imbalanced</p>
+    </td>
+    <td>
+<p>Naïve Bayes - Balanced</p>
+    </td>
+    <td>
+<p>SVM – Random over sampler</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<p>SVM - SMOTE</p>
+    </td>
+    <td>
+<p>SVM - ADASYN</p>
+    </td>
+    <td>
+<p>Random Forest – SMOTE + ENN</p>
+    </td>
+    <td>
+<p>MLP - Imbalanced</p>
+    </td>
+    <td>
+<p>MLP - Balanced</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+  </tr>
+</table>
+</div>
+</body>
+</html>

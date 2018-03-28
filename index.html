@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" xmlns:z-index="http://www.w3.org/1999/xhtml"
+      xmlns:position="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -49,6 +50,7 @@
 </header>
 <!-- End header -->
 
+
 <div id="lead">
     <div id="lead-content">
         <h1>Oleksandr Pimenov</h1>
@@ -56,6 +58,7 @@
         </h2>
         <a href="files/Resume_doc.pdf" class="btn-rounded-white">Download Resume</a>
     </div>
+
     <!-- End #lead-content -->
     <div id="lead-overlay"></div>
     <div id="lead-down">
@@ -66,6 +69,13 @@
     <!-- End #lead-down -->
 </div>
 <!-- End #lead -->
+
+<!--<div>-->
+<!--tried including iframe of the LEO web integration-->
+    <!--<iframe style="position:relative;bottom:0px;right:0px;" scrolling="yes"-->
+            <!--src="https://console.dialogflow.com/api-client/demo/embedded/7d5f92ac-93c0-4d03-b4de-29abbc65c426"-->
+            <!--height="430" width="350"></iframe>-->
+<!--</div>-->
 
 <!--start of education section-->
 <div id="education">
@@ -120,7 +130,6 @@
 </div>
 <!-- End #education -->
 
-
 <!--projects start-->
 <div id="projects" class="background-alt">
     <h2 class="heading">Projects</h2>
@@ -172,6 +181,29 @@
                 <!-- End .project-info -->
             </div>
             <!-- End .project -->
+
+            <div class="project shadow-large">
+                <div class="project-image">
+                    <img src="images/leo_proxy.jpg"/>
+                </div>
+                <!-- End .project-image -->
+                <div class="project-info">
+                    <h3>DialogFlow Proxy</h3>
+                    <p>
+                        DialogFlow Proxy is a
+                        web service that has exposed API to receive a query containing text to be processed by DialogFlow Agent.
+                        The purpose of DialogFlow Proxy is to isolate any required logic processing. It is set up to query
+                        the Agent via HTTP, process response data, make necessary API calls, and
+                        provide text data to be presented to user as a response.
+                    </p>
+                    <br>
+                    <a href="https://github.com/Opimenov/dialog_flow_proxy"><u><i>View source code.</i></u></a>
+                </div>
+                <!-- End .project-info -->
+            </div>
+            <!-- End .project -->
+
+
 
             <div class="project shadow-large">
                 <div class="project-image">
@@ -252,7 +284,7 @@
 <div id="experience" class="background-alt">
     <h2 class="heading">Experience</h2>
     <div id="experience-timeline">
-        <div data-date="May 2017 – present">
+        <div data-date="May 2017 – January 2018">
             <h3><a href="https://www.bovcontrol.com/en/">BovControl</a></h3>
             <h4>Android developer</h4>
             <p>

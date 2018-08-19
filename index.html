@@ -132,7 +132,21 @@
                         Raspberry Pi + few servos + laser pointer + pi camera =
                         ability to play with your cat over the internet.
                     </p>
-                    <a href="http://45.47.84.134:5100"><u><i>Check it out in real time.</i></u></a><br>
+                    <!--<a href="http://45.47.84.134:5100"><u><i>Check it out in real time.</i></u></a><br>-->
+
+                    If you know the pass enter here:<br> <input id='password' type='text'  />
+                    <a href="http://45.47.84.134:5100" onclick="javascript:return validatePass()">submit</a>
+                    <script>
+                        function validatePass(){
+                            if(document.getElementById('password').value == 'Bonzo'){
+                                return true;
+                            }else{
+                                alert('wrong password!!');
+                                return false;
+                            }
+                        }
+                    </script>
+
                     <a href="https://alexandrpimenov.blogspot.com/"><u><i>Detailed DIY here.</i></u></a>
                 </div>
                 <!-- End .project-info -->

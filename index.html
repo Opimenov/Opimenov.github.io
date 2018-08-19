@@ -134,14 +134,21 @@
                     </p>
                     <!--<a href="http://45.47.84.134:5100"><u><i>Check it out in real time.</i></u></a><br>-->
 
-                    If you know the pass enter here:<br> <input id='password' type='text'  />
-                    <a href="http://45.47.84.134:5100" onclick="javascript:return validatePass()">submit</a>
+                    <p>
+                        If you want to check it out live, let me know.<br>
+                        I'll provide you a password.<br>Enter pass below:<br><br>
+                        <input id='password' type='text'  />
+                        <a href="http://45.47.84.134:5100" onclick="javascript:return validatePass()">submit</a>
+
+                    </p>
+                    <br>
                     <script>
                         function validatePass(){
                             if(document.getElementById('password').value == 'Bonzo'){
                                 return true;
                             }else{
-                                alert('wrong password!!');
+                                alert("Sorry dude, but the camera is in my house, so You'd " +
+                                    "better know the password");
                                 return false;
                             }
                         }
